@@ -39,6 +39,7 @@ FEATURE_ENGINEER_REGISTRY: dict[ModelName, Type[BaseFeatureEngineer]] = {
     # Specialized models
     "LSTM": LSTMFeatureEngineer,
     "GRU-P": GRUPFeatureEngineer,
+    "Trans": GRUPFeatureEngineer,
     "HLR": HLRFeatureEngineer,
     "ACT-R": ACTRFeatureEngineer,
     "NN-17": NN17FeatureEngineer,

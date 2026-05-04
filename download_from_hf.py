@@ -36,7 +36,7 @@ N = 500  # e.g. 500..1000 to stay within ~2-3GB
 top_dirs = ["revlogs", "cards", "decks"]  # top-level folders in the repo
 patterns = []
 for d in top_dirs:
-    for i in range(1500, 1500+N + 1):
+    for i in range(2000, 2000+N + 1):
         # match any parquet files under the user's folder (any nesting)
         patterns.append(f"{d}/user_id={i}/*.parquet")
 

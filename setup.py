@@ -36,13 +36,13 @@ def get_rwkv_extensions():
         sources += cuda_sources
 
     ext_modules = [
-        extension(
-            "rwkv.model.RWKV_CUDA",
-            sources,
-            extra_compile_args=extra_compile_args,
-            extra_link_args=extra_link_args,
-            py_limited_api=False,
-        )
+        # extension(
+        #     "rwkv.model.RWKV_CUDA",
+        #     sources,
+        #     extra_compile_args=extra_compile_args,
+        #     extra_link_args=extra_link_args,
+        #     py_limited_api=False,
+        # )
     ]
 
     return ext_modules

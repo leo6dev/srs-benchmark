@@ -16,6 +16,7 @@ ModelName = Literal[
     "FSRS-6-one-step",
     "FSRS-rs",
     # Neural networks
+        "Trans",
     "RNN",
     "GRU",
     "GRU-P",
@@ -243,12 +244,13 @@ class Config:
             "GRU",
             "GRU-P",
             "LSTM",
+            "Trans"
             "RNN",
             "NN-17",
             "Transformer",
         ]:
             self.device: torch.device = torch.device("cuda")
-        elif torch.backends.mps.is_available() and self.model_name == "LSTM":
+        elif torch.backends.mps.is_available() and self.model_name == "LSTM": #or self.model_name == "Trans"
             self.device = torch.device("mps")
         else:
             self.device = torch.device("cpu")

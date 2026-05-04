@@ -3,7 +3,7 @@ import torch
 from config import Config, ModelName
 
 from models import *
-
+from models.translstm import LastQueryTransformerRNN
 
 MODEL_REGISTRY: dict[ModelName, Type[TrainableModel]] = {
     "FSRSv1": FSRS1,
@@ -24,6 +24,7 @@ MODEL_REGISTRY: dict[ModelName, Type[TrainableModel]] = {
     "GRU": RNN,  # GRU uses the RNN class definition as per original script
     "LSTM": LSTM,
     "GRU-P": GRU_P,
+    "Trans": LastQueryTransformerRNN,
     "Transformer": Transformer,
     "NN-17": NN_17,
     "90%": ConstantModel,
@@ -105,6 +106,7 @@ def create_model(
         "GRU-P",
         "Transformer",
         "NN-17",
+        "Trans"
     ]:  # Neural nets
         if model_params is not None:
             if not isinstance(model_params, dict):

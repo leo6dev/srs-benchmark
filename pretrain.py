@@ -4,7 +4,6 @@ import torch
 from features import create_features
 from models.base import BaseModel
 from models.trainable import TrainableModel
-from other import Trainer
 from config import create_parser, Config
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from models.fsrs_v6 import FSRS6
@@ -12,6 +11,8 @@ from models.gru_p import GRU_P
 from models.rnn import RNN
 from models.transformer import Transformer
 from models.nn_17 import NN_17
+from models.translstm import LastQueryTransformerRNN
+from script import Trainer
 
 parser = create_parser()
 args, _ = parser.parse_known_args()
@@ -28,7 +29,7 @@ def process_user(user_id):
 
 if __name__ == "__main__":
     model: TrainableModel
-    n_epoch = 32
+    n_epoch = 6
     lr = 4e-2
     wd = 1e-4
     batch_size = 65536
@@ -38,6 +39,10 @@ if __name__ == "__main__":
     elif config.model_name == "GRU-P":
         model = GRU_P(config)
         model.set_hyperparameters(lr=lr, wd=wd, n_epoch=n_epoch)
+    elif config.model_name == "Trans":
+        model = LastQueryTransformerRNN(config)
+        model.set_hyperparameters(lr=lr, wd=wd, n_epoch=n_epoch)
+    #     uv run pretrain.py --algo LSTM
     elif config.model_name == "Transformer":
         model = Transformer(config)
         model.set_hyperparameters(lr=lr, wd=wd, n_epoch=n_epoch)
@@ -58,12 +63,12 @@ if __name__ == "__main__":
 
     print(total)
 
-    pretrain_num = 500
+    pretrain_num = 551 # TOOD change this
     pretrain_users = [i for i in range(1, pretrain_num + 1)]
 
     df_dict = {}
 
-    with ThreadPoolExecutor() as executor:
+    with ThreadPoolExecutor(max_workers=4) as executor:
         futures = [
             executor.submit(
                 process_user,
@@ -85,7 +90,6 @@ if __name__ == "__main__":
         batch_size=batch_size,
     )
     parameters = trainer.train()
-    print(parameters)
     torch.save(
         parameters, f"./pretrain/{config.get_evaluation_file_name()}_pretrain.pth"
     )

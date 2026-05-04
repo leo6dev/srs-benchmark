@@ -79,8 +79,8 @@ def weighted_avg_and_std(values, weights):
 
 
 if __name__ == "__main__":
-    dev_mode_name = "FSRS-6-dev"
-    dev_file = pathlib.Path(f"./result/{dev_mode_name}.jsonl")
+    dev_mode_name = "DenseHybridRecallModel"
+    dev_file = pathlib.Path(f"/Users/leo/PycharmProjects/srs-benchmark/exper/results/DenseHybridRecallModel.jsonl")
     if dev_file.exists():
         with open(dev_file, "r") as f:
             common_set = set([json.loads(x)["user"] for x in f.readlines()])
@@ -103,142 +103,142 @@ if __name__ == "__main__":
 
     models = (
         [
-            (dev_mode_name, None, None),
-            ("RWKV-P", 2762884, "[Yes](#features-note)"),
-            ("RWKV", 2762884, "[Yes](#features-note)"),
-            (
-                "LSTM-short-secs-duration-equalize_test_with_non_secs",
-                8869,
-                "FIL, G, SR, AT",
-            ),
-            ("MOVING-AVG", 0, "---"),
-            ("FSRS-6-short-recency", 21, "IL, G, SR"),
-            ("FSRS-rs-short", 21, "IL, G, SR"),
-            ("FSRS-6-short", 21, "IL, G, SR"),
-            ("GRU-P-short", 297, "IL, G, SR"),
-            ("FSRS-6-short-preset", 21, "IL, G, SR"),
-            ("GRU-P", 297, "IL, G"),
-            ("FSRS-6-binary-short", 17, "IL, G, SR"),
-            ("FSRS-5-short", 19, "IL, G, SR"),
-            ("FSRS-6-short-deck", 21, "IL, G, SR"),
-            ("FSRS-4.5", 17, "IL, G"),
-            ("FSRSv4", 17, "IL, G"),
-            ("FSRS-6-S0-short", 4, "IL, G, SR"),
-            ("DASH", 9, "IL, G"),
-            ("DASH[MCM]", 9, "IL, G"),
-            ("GRU", 39, "IL, G"),
-            ("DASH-short", 9, "IL, G, SR"),
-            ("DASH[ACT-R]", 5, "IL, G"),
-            ("FSRSv2", 14, "IL, G"),
-            ("FSRSv3", 13, "IL, G"),
-            ("FSRS-6-default-short", 0, "IL, G, SR"),
-            ("ACT-R", 5, "IL"),
-            ("FSRSv1", 7, "IL, G"),
-            ("AVG", 0, "---"),
-            ("Anki", 7, "IL, G"),
-            ("HLR", 3, "IL, G"),
-            ("HLR-short", 3, "IL, G, SR"),
-            ("SM2-trainable", 6, "IL, G"),
-            ("Anki-default", 0, "IL, G"),
-            ("SM2-short", 0, "IL, G, SR"),
-            ("SM2", 0, "IL, G"),
-            ("Ebisu-v2", 0, "IL, G"),
-            ("Transformer", 127, "IL, G"),
+            ("DenseHybridRecallModel", 2162884, "[Yes](#features-note)"),
+            # ("RWKV-P", 2762884, "[Yes](#features-note)"),
+            # ("RWKV", 2762884, "[Yes](#features-note)"),
+            # (
+            #     "LSTM-short-secs-duration-equalize_test_with_non_secs",
+            #     8869,
+            #     "FIL, G, SR, AT",
+            # ),
+            # ("MOVING-AVG", 0, "---"),
+            # ("FSRS-6-short-recency", 21, "IL, G, SR"),
+            # ("FSRS-rs-short", 21, "IL, G, SR"),
+            # ("FSRS-6-short", 21, "IL, G, SR"),
+            # ("GRU-P-short", 297, "IL, G, SR"),
+            # ("FSRS-6-short-preset", 21, "IL, G, SR"),
+            # ("GRU-P", 297, "IL, G"),
+            # ("FSRS-6-binary-short", 17, "IL, G, SR"),
+            # ("FSRS-5-short", 19, "IL, G, SR"),
+            # ("FSRS-6-short-deck", 21, "IL, G, SR"),
+            # ("FSRS-4.5", 17, "IL, G"),
+            # ("FSRSv4", 17, "IL, G"),
+            # ("FSRS-6-S0-short", 4, "IL, G, SR"),
+            # ("DASH", 9, "IL, G"),
+            # ("DASH[MCM]", 9, "IL, G"),
+            # ("GRU", 39, "IL, G"),
+            # ("DASH-short", 9, "IL, G, SR"),
+            # ("DASH[ACT-R]", 5, "IL, G"),
+            # ("FSRSv2", 14, "IL, G"),
+            # ("FSRSv3", 13, "IL, G"),
+            # ("FSRS-6-default-short", 0, "IL, G, SR"),
+            # ("ACT-R", 5, "IL"),
+            # ("FSRSv1", 7, "IL, G"),
+            # ("AVG", 0, "---"),
+            # ("Anki", 7, "IL, G"),
+            # ("HLR", 3, "IL, G"),
+            # ("HLR-short", 3, "IL, G, SR"),
+            # ("SM2-trainable", 6, "IL, G"),
+            # ("Anki-default", 0, "IL, G"),
+            # ("SM2-short", 0, "IL, G, SR"),
+            # ("SM2", 0, "IL, G"),
+            # ("Ebisu-v2", 0, "IL, G"),
+            # ("Transformer", 127, "IL, G"),
             ("RMSE-BINS-EXPLOIT", 0, "IL, G"),
         ]
         if not args.secs
         else [
             (dev_mode_name, None, None),
             ("RWKV-P-short-secs", 2762884, "[Yes](#features-note)"),
-            ("RWKV-short-secs", 2762884, "[Yes](#features-note)"),
-            ("LSTM-short-secs-duration", 8869, "FIL, G, SR, AT"),
-            ("MOVING-AVG-short-secs", 0, "---"),
-            ("GRU-P-short-secs", 297, "FIL, G, SR"),
-            ("DASH[MCM]-short-secs", 9, "FIL, G, SR"),
-            ("DASH-short-secs", 9, "FIL, G, SR"),
-            ("DASH[ACT-R]-short-secs", 5, "FIL, G, SR"),
-            ("AVG-short-secs", 0, "---"),
-            ("FSRS-6-short-secs-recency", 21, "FIL, G, SR"),
-            ("FSRS-6-short-secs", 21, "FIL, G, SR"),
-            ("FSRS-6-binary-short-secs", 17, "FIL, G, SR"),
-            ("FSRS-6-short-secs-preset", 21, "FIL, G, SR"),
-            ("FSRS-6-S0-short-secs", 4, "FIL, G, SR"),
-            ("FSRS-6-short-secs-deck", 21, "FIL, G, SR"),
-            ("ACT-R-short-secs", 5, "FIL, SR"),
-            ("FSRS-4.5-short-secs", 17, "FIL, G, SR"),
-            ("FSRSv4-short-secs", 17, "FIL, G, SR"),
-            ("FSRS-5-short-secs", 19, "FIL, G, SR"),
-            ("FSRS-6-default-short-secs", 0, "FIL, G, SR"),
-            ("GRU-short-secs", 39, "FIL, G, SR"),
-            ("FSRSv3-short-secs", 13, "FIL, G, SR"),
-            ("FSRSv2-short-secs", 14, "FIL, G, SR"),
-            ("HLR-short-secs", 3, "FIL, G, SR"),
-            ("FSRSv1-short-secs", 7, "FIL, G, SR"),
-            ("Ebisu-v2-short-secs", 0, "FIL, G, SR"),
-            ("Anki-short-secs", 7, "FIL, G, SR"),
-            ("SM2-trainable-short-secs", 6, "FIL, G, SR"),
-            ("SM2-short-secs", 0, "FIL, G, SR"),
+            # ("RWKV-short-secs", 2762884, "[Yes](#features-note)"),
+            # ("LSTM-short-secs-duration", 8869, "FIL, G, SR, AT"),
+            # ("MOVING-AVG-short-secs", 0, "---"),
+            # ("GRU-P-short-secs", 297, "FIL, G, SR"),
+            # ("DASH[MCM]-short-secs", 9, "FIL, G, SR"),
+            # ("DASH-short-secs", 9, "FIL, G, SR"),
+            # ("DASH[ACT-R]-short-secs", 5, "FIL, G, SR"),
+            # ("AVG-short-secs", 0, "---"),
+            # ("FSRS-6-short-secs-recency", 21, "FIL, G, SR"),
+            # ("FSRS-6-short-secs", 21, "FIL, G, SR"),
+            # ("FSRS-6-binary-short-secs", 17, "FIL, G, SR"),
+            # ("FSRS-6-short-secs-preset", 21, "FIL, G, SR"),
+            # ("FSRS-6-S0-short-secs", 4, "FIL, G, SR"),
+            # ("FSRS-6-short-secs-deck", 21, "FIL, G, SR"),
+            # ("ACT-R-short-secs", 5, "FIL, SR"),
+            # ("FSRS-4.5-short-secs", 17, "FIL, G, SR"),
+            # ("FSRSv4-short-secs", 17, "FIL, G, SR"),
+            # ("FSRS-5-short-secs", 19, "FIL, G, SR"),
+            # ("FSRS-6-default-short-secs", 0, "FIL, G, SR"),
+            # ("GRU-short-secs", 39, "FIL, G, SR"),
+            # ("FSRSv3-short-secs", 13, "FIL, G, SR"),
+            # ("FSRSv2-short-secs", 14, "FIL, G, SR"),
+            # ("HLR-short-secs", 3, "FIL, G, SR"),
+            # ("FSRSv1-short-secs", 7, "FIL, G, SR"),
+            # ("Ebisu-v2-short-secs", 0, "FIL, G, SR"),
+            # ("Anki-short-secs", 7, "FIL, G, SR"),
+            # ("SM2-trainable-short-secs", 6, "FIL, G, SR"),
+            # ("SM2-short-secs", 0, "FIL, G, SR"),
             ("RMSE-BINS-EXPLOIT-short-secs", 0, "FIL, G, SR"),
         ]
     )
     if args.fast:
-        for model, n_param, features in models:
-            print(f"Model: {model}")
-            m = []
-            parameters = []
-            sizes = []
-            result_file = pathlib.Path(f"./result/{model}.jsonl")
-            if not result_file.exists():
-                continue
-            with open(result_file, "r") as f:
-                data = [json.loads(x) for x in f.readlines()]
-            for result in data:
-                if common_set and result["user"] not in common_set:
-                    continue
-                # if result["size"] > 1000:
-                #     continue
-                m.append(result["metrics"])
-                sizes.append(result["size"])
-                if "parameters" in result:
-                    if isinstance(result["parameters"], list):
-                        parameters.append(result["parameters"])
-                    else:
-                        parameters.extend(result["parameters"].values())
-            if len(sizes) == 0:
-                continue
-            print(f"Total number of users: {len(sizes)}")
-            print(f"Total number of reviews: {sum(sizes)}")
-            for scale, size_base in (
-                ("reviews", np.array(sizes)),
-                ("users", np.ones_like(sizes)),
-            ):
-                print(f"Weighted average by {scale}:")
-                for metric in ("LogLoss", "RMSE(bins)", "AUC", "MBE"):
-                    metrics_list = [item.get(metric) for item in m]
-                    if all(v is None for v in metrics_list):
-                        print(f"{model} {metric} (mean±std): N/A")
-                        continue
-                    metrics = np.array(
-                        [v if v is not None else np.nan for v in metrics_list]
-                    )
-                    valid_mask = ~np.isnan(metrics)
-                    metrics = metrics[valid_mask]
-                    size = size_base[valid_mask]
-                    if len(metrics) == 0:
-                        print(f"{model} {metric} (mean±std): N/A")
-                    else:
-                        wmean, wstd = weighted_avg_and_std(metrics, size)
-                        print(f"{model} {metric} (mean±std): {wmean:.4f}±{wstd:.4f}")
-                print()
-
-            # print(f"LogLoss 99%: {round(np.percentile(np.array([item['LogLoss'] for item in m]), 99), 4)}")
-            # print(f"RMSE(bins) 99%: {round(np.percentile(np.array([item['RMSE(bins)'] for item in m]), 99), 4)}")
-            if len(parameters) > 0:
-                print(
-                    f"parameters: {np.median(parameters, axis=0).round(6).tolist()}\n"
-                )
-                # print(f"parameters: {np.std(parameters, axis=0).round(2).tolist()}\n")
-
+        # for model, n_param, features in models:
+        #     print(f"Model: {model}")
+        #     m = []
+        #     parameters = []
+        #     sizes = []
+        #     result_file = pathlib.Path(f"./result/{model}.jsonl")
+        #     if not result_file.exists():
+        #         continue
+        #     with open(result_file, "r") as f:
+        #         data = [json.loads(x) for x in f.readlines()]
+        #     for result in data:
+        #         if common_set and result["user"] not in common_set:
+        #             continue
+        #         # if result["size"] > 1000:
+        #         #     continue
+        #         m.append(result["metrics"])
+        #         sizes.append(result["n_reviews"])
+        #         if "parameters" in result:
+        #             if isinstance(result["parameters"], list):
+        #                 parameters.append(result["parameters"])
+        #             else:
+        #                 parameters.extend(result["parameters"].values())
+        #     if len(sizes) == 0:
+        #         continue
+        #     print(f"Total number of users: {len(sizes)}")
+        #     print(f"Total number of reviews: {sum(sizes)}")
+        #     for scale, size_base in (
+        #         ("reviews", np.array(sizes)),
+        #         ("users", np.ones_like(sizes)),
+        #     ):
+        #         print(f"Weighted average by {scale}:")
+        #         for metric in ("LogLoss", "RMSE(bins)", "AUC", "MBE"):
+        #             metrics_list = [item.get(metric) for item in m]
+        #             if all(v is None for v in metrics_list):
+        #                 print(f"{model} {metric} (mean±std): N/A")
+        #                 continue
+        #             metrics = np.array(
+        #                 [v if v is not None else np.nan for v in metrics_list]
+        #             )
+        #             valid_mask = ~np.isnan(metrics)
+        #             metrics = metrics[valid_mask]
+        #             size = size_base[valid_mask]
+        #             if len(metrics) == 0:
+        #                 print(f"{model} {metric} (mean±std): N/A")
+        #             else:
+        #                 wmean, wstd = weighted_avg_and_std(metrics, size)
+        #                 print(f"{model} {metric} (mean±std): {wmean:.4f}±{wstd:.4f}")
+        #         print()
+        #
+        #     # print(f"LogLoss 99%: {round(np.percentile(np.array([item['LogLoss'] for item in m]), 99), 4)}")
+        #     # print(f"RMSE(bins) 99%: {round(np.percentile(np.array([item['RMSE(bins)'] for item in m]), 99), 4)}")
+        #     if len(parameters) > 0:
+        #         print(
+        #             f"parameters: {np.median(parameters, axis=0).round(6).tolist()}\n"
+        #         )
+        #         # print(f"parameters: {np.std(parameters, axis=0).round(2).tolist()}\n")
+        pass
     else:
         for scale in ("users", "reviews"):
             print(f"Weighted by number of {scale}\n")
@@ -250,8 +250,9 @@ if __name__ == "__main__":
                 m = []
                 parameters = []
                 sizes = []
-                result_file = pathlib.Path(f"./result/{model}.jsonl")
+                result_file = pathlib.Path(f"/Users/leo/PycharmProjects/srs-benchmark/exper/results/{model}.jsonl")
                 if not result_file.exists():
+                    print(f"{result_file} does not exist")
                     continue
                 with open(result_file, "r") as f:
                     data = [json.loads(x) for x in f.readlines()]
@@ -259,7 +260,7 @@ if __name__ == "__main__":
                     if common_set and result["user"] not in common_set:
                         continue
                     m.append(result["metrics"])
-                    sizes.append(result["size"])
+                    sizes.append(result["metrics"]["n_reviews"])
                     if "parameters" in result:
                         parameters.append(result["parameters"])
                 if len(sizes) == 0:

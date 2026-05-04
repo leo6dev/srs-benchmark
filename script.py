@@ -106,6 +106,8 @@ class Trainer:
             self.test_data_loader = BatchLoader(self.test_set, shuffle=False)
 
     def train(self):
+        logging = False
+
         best_loss = np.inf
         best_w = self.model.state_dict()  # initialize to current weights
         epoch_len = len(self.train_set.y_train)
@@ -116,7 +118,13 @@ class Trainer:
                 best_loss = weighted_loss
                 best_w = w
 
-            for i, batch in enumerate(self.train_data_loader):
+            iterator = enumerate(self.train_data_loader)
+
+            if logging:
+                iterator = tqdm(enumerate(self.train_data_loader), total=self.train_data_loader.batch_nums)
+                print(weighted_loss)
+
+            for i, batch in iterator:
                 self.model.train()
                 self.optimizer.zero_grad()
                 result = batch_process_wrapper(self.model, batch)
